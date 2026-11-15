@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Piezoelectric Stimulation</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <canvas id="gl"></canvas>
+  <div id="door"></div>
+  <div id="ring"></div>
+  <div id="bar"></div>
+  <header><a class="logo" href="#home">Piezoelectric Stimulation</a>
+    <nav><a href="#home">Home</a><a href="#theory">Theory</a><a href="#practical">Practical</a><a
+        href="#stimulation">Stimulation</a></nav>
+  </header>
+  <div id="ctl"><button id="fall">Fall</button><button id="slow" aria-label="Slower">−</button><button id="fast"
+      aria-label="Faster">+</button><button class="dot on" data-t="classic" style="background:#ffc233"
+      aria-label="Classic theme" title="Classic"></button><button class="dot" data-t="neon" style="background:#8b5cf6"
+      aria-label="Neon theme" title="Neon"></button><button class="dot" data-t="forest" style="background:#2e9e5b"
+      aria-label="Forest theme" title="Forest"></button><button class="dot" data-t="ember" style="background:#ff3d68"
+      aria-label="Ember theme" title="Ember"></button></div>
+
+  <section id="home">
+    <div class="hv"><canvas id="hc" aria-hidden="true"></canvas>
+      <h1>Piezoelectric<br>Stimulation</h1>
+      <p>Squeeze a crystal and it makes electricity. Scroll, and fall through the lattice to find out how.</p>
+      <hr>
+      <a class="btn" href="#theory">Step in</a>
+      <div class="hint">Scroll to fall through the door</div>
+    </div>
+  </section>
+
+  <section id="theory">
+    <div class="wrap">
+      <div class="num">CHAMBER I</div>
+      <h2>Theory</h2>
+      <p>Piezoelectricity is the ability of quartz, PZT ceramics and PVDF polymer to produce electric charge under
+        mechanical stress. Scroll, and the crystal responds while the world behind it squeezes with it.</p>
+      <div class="tgrid" id="tg">
+        <div class="stage pn"><svg viewBox="0 0 360 330" role="img" aria-label="Crystal compressing as force increases">
+            <defs>
+              <marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                <path d="M0,0L8,4L0,8z" fill="#ff6b4a" />
+              </marker>
+            </defs>
+            <g stroke="#ff6b4a" stroke-width="5" marker-end="url(#ar)">
+              <line id="a1" x1="90" x2="90" />
+              <line id="a2" x1="180" x2="180" />
+              <line id="a3" x1="270" x2="270" />
+            </g>
+            <rect id="pt" x="50" width="260" height="12" rx="3" fill="#c9c3e6" />
+            <rect id="cr" x="50" width="260" stroke="#5eead4" stroke-width="3" />
+            <text id="pl" x="180" text-anchor="middle" font-size="20" font-weight="700" fill="#14213d">+ + + + +</text>
+            <text id="mi" x="180" text-anchor="middle" font-size="20" font-weight="700" fill="#14213d">− − − − −</text>
+            <rect id="pb" x="50" y="262" width="260" height="12" rx="3" fill="#c9c3e6" />
+            <text id="tf" x="180" y="305" text-anchor="middle" font-size="16" font-weight="700" fill="#fff"></text>
+          </svg></div>
+        <div>
+          <div class="step">
+            <div class="pn">
+              <h3>Balanced charges</h3>
+              <p>Inside the crystal, positive and negative charges sit in balance, so the surface shows no net charge.
+              </p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="pn">
+              <h3>Force shifts the lattice</h3>
+              <p>Pressure pushes the ions out of place and creates tiny electric dipoles throughout the crystal.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="pn">
+              <h3>Charge gathers on the faces</h3>
+              <p>Opposite charges collect on opposite faces, creating a voltage between the two electrodes.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="pn">
+              <h3>A circuit gives current</h3>
+              <p>Connect a load and the charge flows. The harder and faster you squeeze, the more current you get.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 style="margin-top:50px;font-size:2.2rem">Real-life uses</h2>
+      <div class="cards">
+        <div class="pn rv">
+          <h3>Lighters and igniters</h3>
+          <p>A spring hammer strikes a crystal and the spark lights the gas.</p>
+        </div>
+        <div class="pn rv">
+          <h3>Ultrasound imaging</h3>
+          <p>Piezo transducers send and receive sound inside the body.</p>
+        </div>
+        <div class="pn rv">
+          <h3>Energy harvesting</h3>
+          <p>Floor tiles and shoe soles turn footsteps into small amounts of power.</p>
+        </div>
+        <div class="pn rv">
+          <h3>Sensors</h3>
+          <p>Microphones, knock sensors and pressure sensors.</p>
+        </div>
+        <div class="pn rv">
+          <h3>Quartz clocks</h3>
+          <p>A vibrating quartz crystal keeps accurate time.</p>
+        </div>
+        <div class="pn rv">
+          <h3>Medical stimulation</h3>
+          <p>Studied for bone healing and nerve or tissue stimulation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="practical">
+    <div class="wrap">
+      <div class="num">CHAMBER II</div>
+      <h2>Practical</h2>
+      <p>A typical energy-harvesting chain: piezo element, rectifier, capacitor, load. Moving dashes show the direction
+        of current.</p>
+      <div class="fig pn"><svg viewBox="0 0 700 220" role="img" aria-label="Circuit: piezo, rectifier, capacitor, load">
+          <g fill="none" stroke="#e9e4ff" stroke-width="3">
+            <path class="flow" d="M110 70H210M330 70H560M110 150H210M330 150H560" />
+            <path d="M450 70V102M450 118V150" />
+          </g>
+          <rect x="40" y="50" width="70" height="120" rx="8" fill="#5eead4" stroke="#fff" stroke-width="2" /><text
+            x="52" y="116" font-size="15" font-weight="700" fill="#14213d">Piezo</text>
+          <rect x="210" y="45" width="120" height="130" rx="8" fill="#ffc233" stroke="#fff" stroke-width="2" /><text
+            x="228" y="116" font-size="15" font-weight="700" fill="#14213d">Rectifier</text>
+          <g stroke="#fff" stroke-width="4">
+            <line x1="430" y1="102" x2="470" y2="102" />
+            <line x1="430" y1="118" x2="470" y2="118" />
+          </g><text x="480" y="114" font-size="14" fill="#fff">Capacitor</text>
+          <rect x="560" y="70" width="60" height="80" rx="8" fill="none" stroke="#ff6b4a" stroke-width="3" />
+          <circle cx="590" cy="110" r="14" fill="#ffc233" /><text x="545" y="185" font-size="14" fill="#fff">Load
+            (LED)</text>
+          <text x="120" y="50" font-size="14" fill="#ff9a7a" font-weight="700">AC pulse</text><text x="340" y="50"
+            font-size="14" fill="#5eead4" font-weight="700">DC</text>
+        </svg></div>
+      <h2 style="font-size:2.2rem">Formula to calculate current</h2>
+      <div class="formulas">
+        <div class="formula">Q = d<sub>33</sub> × F</div>
+        <div class="formula">I = Q / t = d<sub>33</sub>F / t</div>
+      </div>
+      <ul class="legend">
+        <li><b>Q</b>: charge (C)</li>
+        <li><b>d<sub>33</sub></b>: charge constant (C/N)</li>
+        <li><b>F</b>: force (N)</li>
+        <li><b>t</b>: time (s)</li>
+        <li><b>I</b>: current (A)</li>
+        <li>PZT ≈ 400 pC/N</li>
+      </ul>
+      <p style="margin-top:12px"><b>Example:</b> F = 10 N, d<sub>33</sub> = 400 pC/N, t = 0.1 s gives Q = 4 nC and I =
+        40 nA.</p>
+      <h2 style="margin-top:44px;font-size:2.2rem">Electrical devices used</h2>
+      <div class="cards">
+        <div class="pn rv">
+          <h3>Piezo disc</h3>
+          <p>Generates charge from force.</p>
+        </div>
+        <div class="pn rv">
+          <h3>Bridge rectifier</h3>
+          <p>Converts AC output to DC.</p>
+        </div>
+        <div class="pn rv">
+          <h3>Capacitor</h3>
+          <p>Stores small pulses of energy.</p>
+        </div>
+        <div class="pn rv">
+          <h3>Voltage regulator</h3>
+          <p>Keeps a steady output voltage.</p>
+        </div>
+        <div class="pn rv">
+          <h3>Charge amplifier</h3>
+          <p>Turns tiny charges into a measurable voltage.</p>
+        </div>
+        <div class="pn rv">
+          <h3>Oscilloscope or multimeter</h3>
+          <p>Measures voltage and current.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="stimulation">
+    <div class="wrap">
+      <div class="num">CHAMBER III</div>
+      <h2>Stimulation</h2>
+      <p>Enter a force and see the current from I = d<sub>33</sub> × F / t. The world behind this page squeezes with
+        your force.</p>
+      <div class="panel">
+        <div class="pn">
+          <label for="force">Force F (N)</label><input id="force" type="number" min="0" step="any" value="10">
+          <label for="d33">Charge constant d33 (pC/N)</label><input id="d33" type="number" min="0.1" step="any"
+            value="400">
+          <label for="time">Time t (s)</label><input id="time" type="number" min="0.001" step="any" value="0.1">
+          <button class="btn" id="calc">Calculate</button><button class="btn alt" id="clear">Clear table</button>
+          <div class="err" id="err"></div>
+          <div class="res">Output current<br><strong id="out">0.00 nA</strong><br><small id="chg">Charge: 0 nC</small>
+          </div>
+        </div>
+        <div><canvas class="dk" id="anim" width="480" height="320"></canvas></div>
+      </div>
+      <h2 style="margin-top:44px;font-size:2.2rem">Graph: current vs force</h2><canvas class="dk" id="graph" width="900"
+        height="360"></canvas>
+      <h2 style="margin-top:44px;font-size:2.2rem">Observation table</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Sr. no.</th>
+            <th>Force (N)</th>
+            <th>Current (nA)</th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </section>
+  <footer>Piezoelectric Stimulation – educational project</footer>
+  <script src="script.js"></script>
+
+</body>
+
+</html>
